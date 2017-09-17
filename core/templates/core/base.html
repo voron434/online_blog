@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        {% include "core/navbar.html" %}
+        <div class="row" style="margin-top: 6%">
+          <div class="col-sm-2 left-block">  
+          </div>
+          <div class="col-sm-8">
+            <div class="row">
+              <div class="card-group">
+                {% block content %}
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 right-block">
+            <a class="nav-link" href="#"> Button</a>
+          </div>
+        </div>
+        {% include "core/footer.html" %}
+      </div>
+    </div>
+  </body>
+</html>
