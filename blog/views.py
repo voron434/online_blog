@@ -38,8 +38,8 @@ def post_new(request):
 
 @staff_member_required
 def post_edit(request, pk):
-	post = get_object_or_404(Post, pk=pk)
-	if request.method != "POST":
+    post = get_object_or_404(Post, pk=pk)
+    if request.method != "POST":
         form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})
     form = PostForm(request.POST, instance=post)
@@ -48,7 +48,7 @@ def post_edit(request, pk):
         post.author = request.user
         post.save()
         return redirect('post_detail', pk=post.pk)
-	return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/post_edit.html', {'form': form})
 
 
 @staff_member_required
