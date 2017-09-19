@@ -4,7 +4,7 @@ from django.contrib.auth import views
 
 
 urlpatterns = [
-    url(r'^accounts/signup/$', signup.user_new,  name='signup'),
-    url(r'^accounts/login/$', views.login, name='login'),
-    url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
+	url(r'^accounts/signup/$', signup.user_new,  name='signup'),
+	url(r'^accounts/login/$', views.login, name='login'),
+	url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
 ]
