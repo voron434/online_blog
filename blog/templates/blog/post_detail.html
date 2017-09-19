@@ -7,9 +7,11 @@
             {% else %}
                 <a class="btn btn-outline-primary" href="{% url 'post_publish' pk=post.pk %}"><i class="fa fa-check" aria-hidden="true"></i> Publish</a>
             {% endif %}
-             <a class="btn btn-outline-primary" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a>
-             <a class="btn btn-outline-primary" href="{% url 'post_remove' pk=post.pk %}"><i class="fa fa-trash" aria-hidden="true"></i> Remove </a>
-             <a class="btn btn-outline-primary" href="{% url 'add_comment_to_post' pk=post.pk %}"><i class="fa fa-comment" aria-hidden="true"></i> Add comment </a>
+            {% if user.is_superuser %}
+                 <a class="btn btn-outline-primary" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a>
+                 <a class="btn btn-outline-primary" href="{% url 'post_remove' pk=post.pk %}"><i class="fa fa-trash" aria-hidden="true"></i> Remove </a>
+                 <a class="btn btn-outline-primary" href="{% url 'add_comment_to_post' pk=post.pk %}"><i class="fa fa-comment" aria-hidden="true"></i> Add comment </a>
+            {% endif %}
             <hr>
             <h1>{{ post.title }}</h1>
             <p>{{ post.text|linebreaksbr }}</p>

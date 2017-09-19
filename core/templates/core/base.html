@@ -24,10 +24,14 @@
             </div>
           </div>
           <div class="col-sm-2 right-block">
-            <a class="nav-link" href="#"> Button</a>
+            {% if user.is_seperuser %}
+            <a class="nav-link" href="admin"> Admin page</a>
+            {% endif %}
           </div>
         </div>
-        {% include "core/footer.html" %}
+        <div class="container-fluid">
+          {% include "core/footer.html" %}
+        </div>
       </div>
     </div>
   </body>
