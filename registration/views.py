@@ -8,10 +8,11 @@ def user_new(request):
         form = UserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
     form = UserCreationForm(request.POST)
-    if form.is_valid():
-        user = form.save()
-        username = form.cleaned_data.get('username')
-        raw_password = form.cleaned_data.get('password')
-        login(request, user)
-        return redirect('post_list')
-    return render(request, 'registration/signup.html', {'form': form})
+    if not form.is_valid():
+        return render(request, 'registration/signup.html', {'form': form})
+    user = form.save()
+    username = form.cleaned_data.get('username')
+    raw_password = form.cleaned_data.get('password')
+    login(request, user)
+    return redirect('post_list')
+    

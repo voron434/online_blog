@@ -28,12 +28,13 @@ def post_new(request):
         form = PostForm()
         return render(request, 'blog/post_edit.html', {'form': form})
     form = PostForm(request.POST)
-    if form.is_valid():
-        post = form.save(commit=False)
-        post.author = request.user
-        post.save()
-        return redirect('post_detail', pk=post.pk)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    if not form.is_valid():
+        return render(request, 'blog/post_edit.html', {'form': form})
+    post = form.save(commit=False)
+    post.author = request.user
+    post.save()
+    return redirect('post_detail', pk=post.pk)
+    
 
 
 @staff_member_required
@@ -43,12 +44,13 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})
     form = PostForm(request.POST, instance=post)
-    if form.is_valid():
-        post = form.save(commit=False)
-        post.author = request.user
-        post.save()
-        return redirect('post_detail', pk=post.pk)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    if not form.is_valid():
+        return render(request, 'blog/post_edit.html', {'form': form})
+    post = form.save(commit=False)
+    post.author = request.user
+    post.save()
+    return redirect('post_detail', pk=post.pk)
+    
 
 
 @staff_member_required
@@ -71,13 +73,14 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
         return render(request, 'blog/add_comment_to_post.html', {'form': form})
     form = CommentForm(request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.post = post
-        comment.author = request.user
-        comment.save()
-        return redirect('post_detail', pk=post.pk)
-    return render(request, 'blog/add_comment_to_post.html', {'form': form})
+    if not form.is_valid():
+        return render(request, 'blog/add_comment_to_post.html', {'form': form})
+    comment = form.save(commit=False)
+    comment.post = post
+    comment.author = request.user
+    comment.save()
+    return redirect('post_detail', pk=post.pk)
+    
 
 
 @login_required
